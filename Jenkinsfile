@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define the SSH credentials ID
         SSH_CREDENTIALS_ID = 'my-ssh-key'  // Change this to your Jenkins credentials ID
-        REMOTE_SERVER = '192.168.1.200' // The target remote server IP
+        REMOTE_SERVER = 'root@192.168.1.200' // The target remote server IP
         ANSIBLE_PLAYBOOK = '/opt/ansible/platform_automations/site.yml' // Path to your playbook
     }
 
