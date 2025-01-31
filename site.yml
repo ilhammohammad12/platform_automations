@@ -1,0 +1,6 @@
+---
+- name: Deploy nginx in docker
+  hosts: all
+  become: yes
+  roles:
+    - nginx_docker
