@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Run anisble playbook'){
             steps{
-                sh 'ansible-playbook -i inventory site.yml'
+                sh 'ansible-playbook site.yml'
             }
         }
     }
