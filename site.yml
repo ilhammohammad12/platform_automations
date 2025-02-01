@@ -3,4 +3,4 @@
   hosts: web_servers
   become: yes
   roles:
-    - nginx
+    - deploy_nginx
