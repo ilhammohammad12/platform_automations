@@ -1,2 +1,29 @@
 ---
 # tasks file for deploy_nginx
+- name: ensure if ansible-galaxy is installed or not
+  ansible.builtin.command:
+    cmd: ansible-galaxy collection install community.docker
+  register: result
+  failed_when: result.rc!=0
+  changed_when: result.rcl == 0
+  when: ansible_galaxy_installed is not defined or ansible_galaxy_installed is not true
+
+- name: check if docker is present
+  become: yes
+  ansible.builtin.yum:
+    name: docker
+    state: present
+  
+- name: pull a image
+  community.docker.docker.image.pull:
+    name: nginx 
+    source: pull 
+
+- name: start the container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx
+    state: started
+    exposed_ports:
+      - 6379
+
