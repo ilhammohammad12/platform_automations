@@ -1,9 +1,0 @@
----
-# tasks file for nginx_docker
-    - name: Copy file to destination path
-      copy:
-        src: /opt/ansible/platform_automations/status.config  # Path to the local file on your Jenkins server
-        dest: //opt/  # Path where the file should be copied on the remote servers
-        owner: root  # Optional: Specify the owner of the file
-        group: root  # Optional: Specify the group of the file
-        mode: '0644'  # Optional: Specify the file permissions
