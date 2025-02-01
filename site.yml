@@ -1,6 +1,6 @@
 ---
 - name: Deploy Nginx
-  hosts: web_servers
+  hosts: all
   become: yes
   roles:
     - deploy_nginx

@@ -23,7 +23,7 @@ pipeline {
                     sshagent([SSH_CREDENTIALS_ID]) {
                         // Run Ansible command remotely on the target server
                         sh """
-                            ssh -o StrictHostKeyChecking=no ${REMOTE_SERVER} 'ansible-playbook hosts ${ANSIBLE_PLAYBOOK}'
+                            ssh -o StrictHostKeyChecking=no ${REMOTE_SERVER} 'ansible-playbook -i inventory ${ANSIBLE_PLAYBOOK}'
                         """
                     }
                 }
