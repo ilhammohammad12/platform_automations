@@ -1,7 +1,6 @@
-# main playbook
-
-- name: install nginx
-  hosts: centos
+---
+- name: Deploy Nginx
+  hosts: web_servers
   become: yes
   roles:
-    - deploy_nginx
+    - nginx
