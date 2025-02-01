@@ -6,6 +6,7 @@ pipeline {
         SSH_CREDENTIALS_ID = 'my-ssh-key'  // Change this to your Jenkins credentials ID
         REMOTE_SERVER = 'root@192.168.1.200' // The target remote server IP
         ANSIBLE_PLAYBOOK = '/opt/ansible/platform_automations/site.yml' // Path to your playbook
+        ANSIBLE_LOC = '/opt/ansible/platform_automations'
     }
 
     stages {
@@ -23,21 +24,8 @@ pipeline {
                     sshagent([SSH_CREDENTIALS_ID]) {
                         // Run Ansible command remotely on the target server
                         sh """
-                            ssh -o StrictHostKeyChecking=no ${REMOTE_SERVER} 'ansible-playbook -i inventory ${ANSIBLE_PLAYBOOK}'
+                            ssh -o StrictHostKeyChecking=no ${REMOTE_SERVER} 'cd ${ANSIBLE_LOC}& ansible-playbook -i inventory ${ANSIBLE_PLAYBOOK}'
                         """
                     }
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo "Ansible playbook ran successfully."
-        }
-
-        failure {
-            echo "Ansible playbook execution failed."
-        }
-    }
-}
